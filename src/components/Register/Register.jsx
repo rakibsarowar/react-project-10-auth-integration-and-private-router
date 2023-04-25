@@ -4,8 +4,8 @@ import { AuthContext } from '../providers/AuthProviders';
 
 const Register = () => {
     // Private Routing -----------------------------------------------
-    const user = useContext(AuthContext)
-    console.log(user)
+const {user, createUser} = useContext(AuthContext)
+    console.log(createUser)
 
 
     const handleRegister = event =>{
@@ -16,6 +16,18 @@ const Register = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(name,email, password)
+
+        //  Step 05.2 -Intregration ---------------------------------------------------------------------------
+        createUser(email, password)
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser)
+            // form reset-------------------------------
+            form.reset();
+        })
+        .catch (error => {
+            console.log(error)
+        })
     }
     return (
         <div className="hero min-h-screen bg-base-200">
@@ -48,7 +60,7 @@ const Register = () => {
                             </label>
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn btn-primary">Login</button>
+                            <button className="btn btn-primary">Register</button>
                         </div>
                     </form>
                 </div>

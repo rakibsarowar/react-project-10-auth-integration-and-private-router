@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../providers/AuthProviders';
 
 const Login = () => {
+     //  Step 05.3 -Intregration ---------------------------------------------------------------------------
+    // 01------------------------------
+     const {signIn} = useContext(AuthContext)
+     console.log(signIn)
+    
     const handleLogin = event =>{
         event.preventDefault();
 
@@ -9,6 +15,16 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password)
+        //02--------------------------------------
+        signIn(email, password)
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser)
+        })
+        .catch (error => {
+            console.log(error)
+        })
+
     }
 
     return (

@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../providers/AuthProviders';
 
 const Home = () => {
+
+    // Distructing as object becuase authinfo share object -------------------------------------------
 const {user} = useContext(AuthContext);
     console.log(user);
 
