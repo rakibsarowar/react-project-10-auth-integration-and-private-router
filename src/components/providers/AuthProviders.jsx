@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import app from '../../firebase/firebase.config';
 
 // Step 01  create UserContext & Export it-------------
@@ -18,6 +18,11 @@ const AuthProviders = ({children}) => {
 
     const signIn = (email, password) => {
         return signInWithEmailAndPassword(auth, email, password)
+    }
+
+    // step 07 making signOut---------------------------------------------------------------------------
+    const logOut =() => {
+        return signOut(auth)
     }
     
     // Step 04 - share data in state --------------------
@@ -39,6 +44,7 @@ const AuthProviders = ({children}) => {
         user,
         createUser,
         signIn,
+        logOut
     }
     
 
