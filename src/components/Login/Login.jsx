@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     const handleLogin = event =>{
@@ -37,6 +38,9 @@ const Login = () => {
                             <button className="btn btn-primary">Login</button>
                         </div>
                     </form>
+                    <Link to="/register">
+                    <button className="btn btn-active btn-link">New to Auth Master</button>
+                    </Link>
                 </div>
             </div>
         </div>
