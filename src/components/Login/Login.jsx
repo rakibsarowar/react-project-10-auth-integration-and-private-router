@@ -5,7 +5,7 @@ import { AuthContext } from '../providers/AuthProviders';
 const Login = () => {
      //  Step 05.3 -Intregration ---------------------------------------------------------------------------
     // 01------------------------------
-     const {signIn} = useContext(AuthContext)
+     const {signIn, signInWithGoogle} = useContext(AuthContext)
      console.log(signIn)
     
     const handleLogin = event =>{
@@ -26,6 +26,17 @@ const Login = () => {
             console.log(error)
         })
 
+    }
+
+    const handleGoogleSignIn =() => {
+        signInWithGoogle()
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser)
+        })
+        .catch (error =>{
+            console.log(error)
+        })
     }
 
     return (
@@ -58,6 +69,9 @@ const Login = () => {
                     <Link to="/register">
                     <button className="btn btn-active btn-link">New to Auth Master</button>
                     </Link>
+                    <div className='text-center'>
+                    <button onClick={handleGoogleSignIn} className="btn btn-secondary">Google</button>
+                    </div>
                 </div>
             </div>
         </div>
